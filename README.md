@@ -5,7 +5,7 @@
 **Free & open source (GPL-3.0)** · Source & releases: https://github.com/Wts-scripts/wts_vehicleaudio
 
 Made by **WTS Scripts**
-📖 Documentation: https://wtsdocs.vercel.app/wts_vehicleaudio
+📖 Documentation: https://wts-docs.vercel.app/wts_vehicleaudio
 💬 Discord (community): https://discord.gg/5VMgt422WX
 🛒 Other WTS scripts: https://wts-scripts.tebex.store
 
@@ -84,7 +84,7 @@ Only non-player, invisible, non-networked peds are ever considered "ghosts". Rea
 Client export: `exports.wts_vehicleaudio:Notify(message, kind)` — `kind` = `info` | `success` | `error`.
 
 All events are prefixed `wts_vehicleaudio:`. Full list:
-https://wtsdocs.vercel.app/wts_vehicleaudio/exports-and-events
+https://wts-docs.vercel.app/wts_vehicleaudio/exports-and-events
 
 ### Troubleshooting
 
@@ -94,7 +94,7 @@ https://wtsdocs.vercel.app/wts_vehicleaudio/exports-and-events
 
 **Can't switch back to the driver seat** — another resource holds the seat with an invisible ped. Set `Config.Debug = true`, try again and check F8: `seat -1 refused: occupied by ped <id> | script=NAME` tells you which resource owns it. See *Seat switching* above.
 
-More: https://wtsdocs.vercel.app/wts_vehicleaudio/troubleshooting
+More: https://wts-docs.vercel.app/wts_vehicleaudio/troubleshooting
 
 ### Support & license
 
@@ -108,7 +108,7 @@ More: https://wtsdocs.vercel.app/wts_vehicleaudio/troubleshooting
 
 ## Français
 
-Documentation complète (en anglais) : https://wtsdocs.vercel.app/wts_vehicleaudio
+Documentation complète (en anglais) : https://wts-docs.vercel.app/wts_vehicleaudio
 
 ### Installation
 
@@ -146,7 +146,7 @@ Support : package gratuit, **sans SAV**. Bugs → issues GitHub : https://github
 
 ## Deutsch
 
-Vollständige Dokumentation (Englisch): https://wtsdocs.vercel.app/wts_vehicleaudio
+Vollständige Dokumentation (Englisch): https://wts-docs.vercel.app/wts_vehicleaudio
 
 ### Installation
 
@@ -184,7 +184,7 @@ Support: kostenloses Paket, **kein Support**. Bugs → GitHub Issues: https://gi
 
 ## Español
 
-Documentación completa (en inglés): https://wtsdocs.vercel.app/wts_vehicleaudio
+Documentación completa (en inglés): https://wts-docs.vercel.app/wts_vehicleaudio
 
 ### Instalación
 
@@ -222,7 +222,7 @@ Soporte: paquete gratuito, **sin soporte**. Bugs → issues de GitHub: https://g
 
 ## Italiano
 
-Documentazione completa (in inglese): https://wtsdocs.vercel.app/wts_vehicleaudio
+Documentazione completa (in inglese): https://wts-docs.vercel.app/wts_vehicleaudio
 
 ### Installazione
 
