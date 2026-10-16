@@ -41,7 +41,7 @@ Made by **WTS Scripts**
 
 ### Installation
 
-1. Put the `wts_vehicleaudio` folder in `resources/`.
+1. Download the source (**Code → Download ZIP**, or the latest [release](https://github.com/Wts-scripts/wts_vehicleaudio/releases)), extract it and **rename the folder to `wts_vehicleaudio`** (GitHub names it `wts_vehicleaudio-main`). Put it in `resources/`.
 2. Add to `server.cfg`:
    ```cfg
    ensure wts_vehicleaudio
