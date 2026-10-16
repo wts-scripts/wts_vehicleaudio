@@ -1,0 +1,2632 @@
+/* Font of the built-in notifications (see BUILT-IN NOTIFICATIONS block at the bottom) */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&family=Raleway:wght@700&display=swap');
+
+/* ==========================================
+   RESET
+   ========================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+
+/* ==========================================
+   BODY
+   ========================================== */
+
+body {
+    background: transparent;
+    color: #ffffff;
+}
+
+
+/* ==========================================
+   APPLICATION
+   ========================================== */
+
+#audio-app {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    pointer-events: auto;
+}
+
+
+/* ==========================================
+   HIDDEN
+   ========================================== */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* ==========================================
+   PLAYER
+   ========================================== */
+
+.player {
+    width: 100%;
+    max-width: 420px;
+
+    padding: 22px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(28, 28, 32, 0.98),
+            rgba(13, 13, 16, 0.98)
+        );
+
+    border: 1px solid #ffffff;
+    box-shadow: none;
+    backdrop-filter: none;
+
+    overflow: hidden;
+}
+
+
+/* ==========================================
+   HEADER
+   ========================================== */
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+}
+
+
+.small-title {
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    color: rgba(255, 255, 255, 0.45);
+
+    margin-bottom: 4px;
+}
+
+
+.vehicle-name {
+    font-size: 16px;
+    font-weight: 600;
+
+    color: #ffffff;
+}
+
+
+/* ==========================================
+   CLOSE BUTTON
+   ========================================== */
+
+.close-btn {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+    border-radius: 9px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    color: rgba(255, 255, 255, 0.65);
+
+    font-size: 22px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.11);
+    color: #ffffff;
+}
+
+
+/* ==========================================
+   COVER
+   ========================================== */
+
+.cover-container {
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 18px;
+}
+
+
+.cover {
+    width: 190px;
+    height: 190px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #25252a,
+            #111115
+        );
+
+    overflow: hidden;
+}
+
+#cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+
+.music-icon {
+    font-size: 58px;
+
+    color: rgba(255, 255, 255, 0.75);
+}
+
+
+/* ==========================================
+   TRACK INFORMATION
+   ========================================== */
+
+.track-info {
+    text-align: center;
+
+    margin-bottom: 18px;
+}
+
+
+.track-title {
+    width: 100%;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    color: #ffffff;
+
+    margin-bottom: 5px;
+}
+
+
+.track-artist {
+    width: 100%;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+
+    font-size: 12px;
+
+    color: rgba(255, 255, 255, 0.45);
+}
+
+
+/* ==========================================
+   PROGRESS
+   ========================================== */
+
+.progress-container {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 17px;
+}
+
+
+.progress-container span {
+    min-width: 30px;
+
+    font-size: 10px;
+
+    color: rgba(255, 255, 255, 0.4);
+
+    text-align: center;
+}
+
+
+.progress-bar {
+    position: relative;
+
+    flex: 1;
+
+    height: 4px;
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    overflow: hidden;
+
+    cursor: pointer;
+}
+
+
+.progress {
+    width: 0%;
+    height: 100%;
+
+    border-radius: inherit;
+
+    background: #ffffff;
+
+    transition: width 0.1s linear;
+}
+
+
+/* ==========================================
+   CONTROLS
+   ========================================== */
+
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 18px;
+
+    margin-bottom: 18px;
+}
+
+
+.control,
+.play-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+
+.control {
+    width: 32px;
+    height: 32px;
+
+    border-radius: 50%;
+
+    background: transparent;
+
+    font-size: 17px;
+
+    color: rgba(255, 255, 255, 0.72);
+}
+
+
+.control:hover {
+    color: #ffffff;
+
+    background: rgba(255, 255, 255, 0.06);
+}
+
+
+.control.secondary {
+    font-size: 15px;
+
+    color: rgba(255, 255, 255, 0.38);
+}
+
+
+.control.secondary:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+
+.play-button {
+    width: 46px;
+    height: 46px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    color: #111111;
+
+    font-size: 16px;
+}
+
+
+.play-button:hover {
+    transform: scale(1.04);
+}
+
+
+/* ==========================================
+   VOLUME
+   ========================================== */
+
+.volume-container {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
+
+
+.volume-icon {
+    width: 20px;
+
+    font-size: 13px;
+
+    color: rgba(255, 255, 255, 0.55);
+
+    text-align: center;
+}
+
+
+#volume {
+    flex: 1;
+
+    width: 100%;
+
+    height: 4px;
+
+    appearance: none;
+
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.10);
+
+    cursor: pointer;
+}
+
+
+#volume::-webkit-slider-thumb {
+    appearance: none;
+
+    width: 12px;
+    height: 12px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    cursor: pointer;
+}
+
+
+/* ==========================================
+   AUTO PLAY
+   ========================================== */
+
+.autoplay-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+.autoplay-label {
+    font-size: 11px;
+
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.autoplay-toggle {
+    min-width: 42px;
+    height: 26px;
+
+    padding: 0 8px;
+
+    border: none;
+    border-radius: 7px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    color: rgba(255, 255, 255, 0.45);
+
+    font-size: 9px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+.autoplay-toggle:hover {
+    background: rgba(255, 255, 255, 0.11);
+
+    color: #ffffff;
+}
+
+.autoplay-toggle.active {
+    background: #ffffff;
+
+    color: #111111;
+}
+
+
+/* ==========================================
+   PLAYLIST HEADER
+   ========================================== */
+
+.playlist-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+}
+
+
+.playlist-header span {
+    font-size: 12px;
+    font-weight: 600;
+
+    color: rgba(255, 255, 255, 0.72);
+}
+
+
+#add-track {
+    border: none;
+
+    padding: 6px 9px;
+
+    border-radius: 7px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    color: rgba(255, 255, 255, 0.65);
+
+    font-size: 10px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+
+#add-track:hover {
+    background: rgba(255, 255, 255, 0.11);
+
+    color: #ffffff;
+}
+
+
+/* ==========================================
+   PLAYLIST
+   ========================================== */
+
+.playlist {
+    max-height: 230px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding-right: 4px;
+}
+
+
+/* ==========================================
+   SCROLLBAR PLAYLIST
+   ========================================== */
+
+.playlist::-webkit-scrollbar {
+    width: 4px;
+}
+
+
+.playlist::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+.playlist::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.16);
+
+    border-radius: 10px;
+}
+
+
+.playlist::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+
+/* ==========================================
+   PLAYLIST TRACK
+   ========================================== */
+
+.playlist-item {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    width: 100%;
+
+    min-height: 48px;
+
+    padding: 7px 8px;
+
+    margin-bottom: 4px;
+
+    border-radius: 9px;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease;
+}
+
+
+.playlist-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+
+.playlist-item.active {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+
+/* ==========================================
+   PLAYLIST THUMBNAIL
+   ========================================== */
+
+.playlist-thumb {
+    width: 46px;
+    height: 32px;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+
+    border-radius: 6px;
+
+    background: #18181c;
+}
+
+
+.playlist-thumb img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* ==========================================
+   PLAYLIST TRACK INFO
+   ========================================== */
+
+.playlist-track-info {
+    min-width: 0;
+
+    flex: 1;
+}
+
+
+.playlist-track-title {
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    color: rgba(255, 255, 255, 0.85);
+
+    margin-bottom: 3px;
+}
+
+
+.playlist-track-artist {
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+
+    font-size: 10px;
+
+    color: rgba(255, 255, 255, 0.38);
+}
+
+
+/* ==========================================
+   DELETE TRACK
+   ========================================== */
+
+.playlist-delete {
+    width: 24px;
+    height: 24px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background: transparent;
+
+    color: rgba(255, 255, 255, 0.25);
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+
+.playlist-delete:hover {
+    background: rgba(255, 255, 255, 0.08);
+
+    color: #ffffff;
+}
+
+
+/* ==========================================
+   EMPTY PLAYLIST
+   ========================================== */
+
+.empty-playlist {
+    padding: 15px 5px;
+
+    text-align: center;
+
+    font-size: 11px;
+
+    color: rgba(255, 255, 255, 0.30);
+}
+
+
+/* ==========================================
+   MODAL
+   ========================================== */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.55);
+}
+
+
+.modal-box {
+    width: 100%;
+    max-width: 380px;
+
+    padding: 20px;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(28, 28, 32, 0.99),
+            rgba(13, 13, 16, 0.99)
+        );
+
+    overflow: hidden;
+}
+
+
+/* ==========================================
+   MODAL HEADER
+   ========================================== */
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+
+.modal-title {
+    font-size: 15px;
+    font-weight: 600;
+
+    color: #ffffff;
+
+    margin-bottom: 4px;
+}
+
+
+.modal-subtitle {
+    font-size: 10px;
+
+    color: rgba(255, 255, 255, 0.38);
+}
+
+
+/* ==========================================
+   URL FIELD
+   ========================================== */
+
+.input-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    margin-bottom: 20px;
+}
+
+
+.input-group label {
+    font-size: 10px;
+    font-weight: 600;
+
+    color: rgba(255, 255, 255, 0.50);
+}
+
+
+.input-group input {
+    width: 100%;
+
+    height: 40px;
+
+    padding: 0 12px;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 8px;
+
+    outline: none;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    color: #ffffff;
+
+    font-size: 11px;
+}
+
+
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.25);
+}
+
+
+.input-group input:focus {
+    border-color: rgba(255, 255, 255, 0.18);
+
+    background: rgba(255, 255, 255, 0.07);
+}
+
+
+/* ==========================================
+   MODAL BUTTONS
+   ========================================== */
+
+.modal-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 8px;
+}
+
+
+.modal-button {
+    height: 34px;
+
+    padding: 0 13px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    font-size: 10px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+
+.modal-button.cancel {
+    background: rgba(255, 255, 255, 0.06);
+
+    color: rgba(255, 255, 255, 0.55);
+}
+
+
+.modal-button.cancel:hover {
+    background: rgba(255, 255, 255, 0.10);
+
+    color: #ffffff;
+}
+
+
+.modal-button.add {
+    background: #ffffff;
+
+    color: #111111;
+}
+
+
+.modal-button.add:hover {
+    background: #e9e9e9;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media (max-width: 500px) {
+
+    .player {
+        max-width: calc(100vw - 30px);
+
+        padding: 18px;
+    }
+
+
+    .cover {
+        width: 160px;
+        height: 160px;
+    }
+
+
+    .controls {
+        gap: 12px;
+    }
+
+}
+
+
+/* ==========================================
+   AUDIO / DOORS NAVIGATION
+   ========================================== */
+
+.vehicle-panels {
+    position: relative;
+
+    width: 100%;
+    max-width: 420px;
+
+    display: flex;
+
+    overflow: hidden;
+}
+
+
+/* ==========================================
+   PANELS
+   ========================================== */
+
+.vehicle-panel {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+
+    flex: 0 0 100%;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.35s ease;
+}
+
+
+/* ==========================================
+   INITIAL POSITION
+   ========================================== */
+
+.audio-panel {
+    transform: translateX(0);
+}
+
+.doors-panel {
+    transform: translateX(0);
+}
+
+
+/* ==========================================
+   SLIDE TO DOORS
+   ========================================== */
+
+.vehicle-panels.show-doors .audio-panel {
+    transform: translateX(-100%);
+}
+
+.vehicle-panels.show-doors .doors-panel {
+    transform: translateX(-100%);
+}
+
+
+/* ==========================================
+   NAVIGATION
+   ========================================== */
+
+.vehicle-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    margin-top: 18px;
+}
+
+
+.vehicle-nav {
+    height: 30px;
+
+    min-width: 80px;
+
+    padding: 0 12px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    color: rgba(255, 255, 255, 0.40);
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 0.8px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+
+.vehicle-nav:hover {
+    background: rgba(255, 255, 255, 0.10);
+
+    color: rgba(255, 255, 255, 0.80);
+}
+
+
+.vehicle-nav.active {
+    background: #ffffff;
+
+    color: #111111;
+}
+
+
+/* ==========================================
+   DOORS PANEL
+   ========================================== */
+
+.doors-panel {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+
+/* HEADER */
+
+.doors-panel .header {
+    flex-shrink: 0;
+}
+
+
+/* CAR AREA */
+
+.doors-panel .vehicle-diagram {
+    position: relative;
+    width: 100%;
+    height: 390px;
+    margin: 0;
+    flex: 1;
+    min-height: 360px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: visible;
+}
+
+
+/* CAR */
+
+.doors-panel .sports-car {
+    position: absolute;
+
+    width: auto;
+    height: 370px;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    left: 50%;
+    top: 44%;
+
+    transform: translate(-50%, -50%);
+
+    object-fit: contain;
+
+    pointer-events: none;
+    user-select: none;
+
+    filter:
+        drop-shadow(0 15px 25px rgba(0,0,0,0.70));
+}
+
+
+/* ==========================================
+   CLICKABLE ZONES
+   ========================================== */
+
+.vehicle-zone {
+    position: absolute;
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+
+    height: 30px;
+    padding: 5px 9px;
+
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 9px;
+
+    background: rgba(15,16,20,0.88);
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(8px);
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+.vehicle-zone:hover {
+    background: rgba(35,36,42,0.96);
+
+    border-color: rgba(255,255,255,0.45);
+
+    box-shadow:
+        0 0 18px rgba(255,255,255,0.08);
+
+    transform: scale(1.04);
+}
+
+.vehicle-zone:active {
+    transform: scale(0.97);
+}
+
+
+/* POINT */
+
+.zone-dot {
+    width: 7px;
+    height: 7px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 8px rgba(255,255,255,0.7);
+}
+
+
+/* TEXT */
+
+.zone-label {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+
+    margin-left: 7px;
+
+    white-space: nowrap;
+
+    text-align: left;
+}
+
+.zone-label strong {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+
+.zone-label small {
+    font-size: 8px;
+    color: rgba(255,255,255,0.42);
+}
+
+
+/* OPEN DOOR */
+
+.vehicle-zone.open {
+    background: rgba(255,55,55,0.18);
+
+    border-color: rgba(255,70,70,0.65);
+
+    box-shadow:
+        0 0 15px rgba(255,50,50,0.22);
+}
+
+.vehicle-zone.open .zone-dot {
+    background: #ff4040;
+
+    box-shadow:
+        0 0 9px rgba(255,50,50,0.9);
+}
+
+.vehicle-zone.open .zone-label small {
+    color: #ff6060;
+}
+
+
+/* ==========================================
+   HAZARD LIGHTS
+   ========================================== */
+
+.doors-panel .vehicle-lock-section {
+    flex-shrink: 0;
+
+    margin-top: 4px;
+    margin-bottom: 0;
+}
+
+.vehicle-lock-button {
+    width: 100%;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    border: 1px solid rgba(255,50,50,0.35);
+    border-radius: 10px;
+
+    background: rgba(255,40,40,0.09);
+
+    color: #ffffff;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        transform 0.15s ease;
+}
+
+.vehicle-lock-button:hover {
+    background: rgba(255,40,40,0.16);
+
+    border-color: rgba(255,70,70,0.65);
+
+    box-shadow:
+        0 0 18px rgba(255,40,40,0.16);
+}
+
+.vehicle-lock-button:active {
+    transform: scale(0.98);
+}
+
+.vehicle-lock-button .lock-icon {
+    color: #ff3838;
+
+    font-size: 17px;
+
+    filter:
+        drop-shadow(0 0 7px rgba(255,50,50,0.7));
+}
+
+
+/* ==========================================
+   NAVIGATION — ALWAYS AT THE BOTTOM
+   ========================================== */
+
+.doors-panel .vehicle-navigation {
+    flex-shrink: 0;
+
+    margin-top: 18px;
+    margin-bottom: 0;
+}
+
+
+/* ==========================================
+   VEHICLE DIAGRAM
+   ========================================== */
+
+.vehicle-diagram {
+    position: relative;
+
+    width: 100%;
+    height: 285px;
+
+    margin: 4px 0 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ==========================================
+   BODYWORK
+   ========================================== */
+
+.vehicle-body {
+    position: relative;
+
+    width: 150px;
+    height: 245px;
+
+    border-radius: 48px 48px 35px 35px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #0d0d10 0%,
+            #29292f 18%,
+            #424249 50%,
+            #29292f 82%,
+            #0d0d10 100%
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.22);
+
+    box-shadow:
+        inset 0 0 25px rgba(0, 0, 0, 0.7),
+        0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+
+/* ==========================================
+   WINDOWS
+   ========================================== */
+
+.vehicle-window {
+    position: absolute;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 106px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #30343a,
+            #101216
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.13);
+
+    box-shadow:
+        inset 0 0 12px rgba(0, 0, 0, 0.6);
+}
+
+
+.vehicle-window-front {
+    top: 28px;
+
+    height: 67px;
+
+    border-radius: 25px 25px 8px 8px;
+}
+
+
+.vehicle-window-rear {
+    top: 101px;
+
+    height: 53px;
+
+    border-radius: 8px;
+}
+
+
+/* ==========================================
+   WINDOW SEPARATION
+   ========================================== */
+
+.vehicle-center-line {
+    position: absolute;
+
+    top: 96px;
+    left: 50%;
+
+    width: 1px;
+    height: 65px;
+
+    background: rgba(255, 255, 255, 0.10);
+}
+
+
+/* ==========================================
+   HEADLIGHTS
+   ========================================== */
+
+.vehicle-headlight {
+    position: absolute;
+
+    top: 12px;
+
+    width: 27px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.65);
+
+    box-shadow:
+        0 0 8px rgba(255, 255, 255, 0.35);
+}
+
+
+.vehicle-headlight-left {
+    left: 20px;
+}
+
+
+.vehicle-headlight-right {
+    right: 20px;
+}
+
+
+/* ==========================================
+   REAR LIGHTS
+   ========================================== */
+
+.vehicle-taillight {
+    position: absolute;
+
+    bottom: 14px;
+
+    width: 27px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    background: rgba(190, 35, 35, 0.65);
+
+    box-shadow:
+        0 0 7px rgba(190, 35, 35, 0.25);
+}
+
+
+.vehicle-taillight-left {
+    left: 20px;
+}
+
+
+.vehicle-taillight-right {
+    right: 20px;
+}
+
+
+/* ==========================================
+   WHEELS
+   ========================================== */
+
+.vehicle-wheel {
+    position: absolute;
+
+    width: 17px;
+    height: 48px;
+
+    border-radius: 8px;
+
+    background: #080809;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+        0 3px 7px rgba(0, 0, 0, 0.7);
+}
+
+
+.vehicle-wheel-front-left {
+    left: -8px;
+    top: 43px;
+}
+
+
+.vehicle-wheel-front-right {
+    right: -8px;
+    top: 43px;
+}
+
+
+.vehicle-wheel-rear-left {
+    left: -8px;
+    bottom: 43px;
+}
+
+
+.vehicle-wheel-rear-right {
+    right: -8px;
+    bottom: 43px;
+}
+
+
+/* ==========================================
+   CLICKABLE ZONES
+   ========================================== */
+
+.vehicle-zone {
+    position: absolute;
+
+    z-index: 5;
+
+    border: none;
+
+    background: transparent;
+
+    color: rgba(255, 255, 255, 0.45);
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease,
+        transform 0.15s ease;
+}
+
+
+.vehicle-zone:hover {
+    color: #ffffff;
+
+    background: rgba(255, 255, 255, 0.07);
+}
+
+
+.vehicle-zone:active {
+    transform: scale(0.96);
+}
+
+
+/* ==========================================
+   SPORTS VEHICLE
+   ========================================== */
+
+.vehicle-diagram {
+    position: relative;
+    width: 100%;
+    height: 330px;
+
+    margin: 0 0 8px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* ==========================================
+   CAR
+   ========================================== */
+
+.sports-car {
+    position: absolute;
+
+    width: 205px;
+    height: 315px;
+
+    object-fit: contain;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    pointer-events: none;
+
+    user-select: none;
+
+    filter:
+        drop-shadow(
+            0 12px 22px
+            rgba(0, 0, 0, 0.65)
+        );
+}
+
+
+/* ==========================================
+   ZONES
+   ========================================== */
+
+.vehicle-zone {
+    position: absolute;
+
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+
+    height: 42px;
+
+    padding: 5px 9px;
+
+    border: 1px solid rgba(255,255,255,0.16);
+
+    border-radius: 9px;
+
+    background:
+        rgba(15, 16, 20, 0.88);
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(8px);
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+
+.vehicle-zone:hover {
+    background:
+        rgba(35, 36, 42, 0.96);
+
+    border-color:
+        rgba(255,255,255,0.45);
+
+    box-shadow:
+        0 0 18px
+        rgba(255,255,255,0.08);
+
+    transform: scale(1.04);
+}
+
+
+.vehicle-zone:active {
+    transform: scale(0.97);
+}
+
+
+/* ==========================================
+   POINT
+   ========================================== */
+
+.zone-dot {
+    width: 7px;
+    height: 7px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 8px
+        rgba(255,255,255,0.7);
+}
+
+
+/* ==========================================
+   TEXT
+   ========================================== */
+
+.zone-label {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 2px;
+
+    margin-left: 7px;
+
+    white-space: nowrap;
+
+    text-align: left;
+}
+
+
+.zone-label strong {
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.2px;
+}
+
+
+.zone-label small {
+    font-size: 8px;
+
+    color:
+        rgba(255,255,255,0.42);
+}
+
+
+/* ==========================================
+   OPEN STATE
+   ========================================== */
+
+.vehicle-zone.open {
+    background:
+        rgba(255, 55, 55, 0.18);
+
+    border-color:
+        rgba(255, 70, 70, 0.65);
+
+    box-shadow:
+        0 0 15px
+        rgba(255, 50, 50, 0.22);
+}
+
+
+.vehicle-zone.open .zone-dot {
+    background: #ff4040;
+
+    box-shadow:
+        0 0 9px
+        rgba(255,50,50,0.9);
+}
+
+
+.vehicle-zone.open .zone-label small {
+    color: #ff6060;
+}
+
+
+/* ==========================================
+   WARNINGS
+   ========================================== */
+
+.vehicle-lock-section {
+    margin-top: 4px;
+    margin-bottom: 18px;
+}
+
+
+.vehicle-lock-button {
+    width: 100%;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    border: 1px solid
+        rgba(255, 50, 50, 0.35);
+
+    border-radius: 10px;
+
+    background:
+        rgba(255, 40, 40, 0.09);
+
+    color: #ffffff;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        transform 0.15s ease;
+}
+
+
+.vehicle-lock-button:hover {
+    background:
+        rgba(255, 40, 40, 0.16);
+
+    border-color:
+        rgba(255, 70, 70, 0.65);
+
+    box-shadow:
+        0 0 18px
+        rgba(255, 40, 40, 0.16);
+}
+
+
+.vehicle-lock-button:active {
+    transform: scale(0.98);
+}
+
+
+.vehicle-lock-button .lock-icon {
+    color: #ff3838;
+
+    font-size: 17px;
+
+    filter:
+        drop-shadow(
+            0 0 7px
+            rgba(255,50,50,0.7)
+        );
+}
+
+
+/* ==========================================
+   HANDLES
+   ========================================== */
+
+.vehicle-door-handle {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 17px;
+    height: 3px;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 3px;
+
+    background: rgba(255, 255, 255, 0.30);
+}
+
+
+/* ==========================================
+   HOOD
+   ========================================== */
+
+.vehicle-hood {
+    top: 4px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 78px;
+    height: 30px;
+
+    border-radius: 12px 12px 6px 6px;
+}
+
+
+.vehicle-hood:hover {
+    transform: translateX(-50%) scale(1.04);
+}
+
+
+/* ==========================================
+   TRUNK
+   ========================================== */
+
+.vehicle-trunk {
+    bottom: 4px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 78px;
+    height: 30px;
+
+    border-radius: 6px 6px 12px 12px;
+}
+
+
+.vehicle-trunk:hover {
+    transform: translateX(-50%) scale(1.04);
+}
+
+
+/* ==========================================
+   LABELS
+   ========================================== */
+
+.vehicle-zone-label {
+    font-size: 7px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.5px;
+
+    white-space: nowrap;
+
+    opacity: 0;
+
+    transition: opacity 0.15s ease;
+}
+
+
+.vehicle-zone:hover .vehicle-zone-label {
+    opacity: 1;
+}
+
+
+/* ==========================================
+   OPEN STATE
+   ========================================== */
+
+.vehicle-zone.open {
+    background: rgba(255, 70, 70, 0.16);
+
+    color: #ff5a5a;
+
+    box-shadow:
+        0 0 12px rgba(255, 60, 60, 0.18);
+}
+
+
+.vehicle-zone.open .vehicle-zone-label {
+    opacity: 1;
+}
+
+
+/* ==========================================
+   WARNINGS
+   ========================================== */
+
+.vehicle-lock-section {
+    margin-top: 4px;
+
+    margin-bottom: 18px;
+}
+
+
+.vehicle-lock-button {
+    width: 100%;
+
+    height: 42px;
+
+    padding: 0 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    color: rgba(255, 255, 255, 0.65);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease,
+        transform 0.15s ease;
+}
+
+
+.vehicle-lock-button:hover {
+    background: rgba(255, 60, 60, 0.12);
+
+    color: #ffffff;
+}
+
+
+.vehicle-lock-button:active {
+    transform: scale(0.98);
+}
+
+
+.vehicle-lock-button .lock-icon {
+    color: #ff3b3b;
+
+    font-size: 16px;
+
+    line-height: 1;
+
+    filter:
+        drop-shadow(
+            0 0 5px
+            rgba(255, 59, 59, 0.45)
+        );
+}
+
+
+.vehicle-lock-button.active {
+    background: rgba(255, 45, 45, 0.16);
+
+    color: #ffffff;
+}
+
+
+.vehicle-lock-button.active .lock-icon {
+    color: #ff3030;
+
+    filter:
+        drop-shadow(
+            0 0 9px
+            rgba(255, 40, 40, 0.8)
+        );
+}
+
+
+/* ==========================================
+   LOCKING
+   ========================================== */
+
+.vehicle-lock-section {
+    margin-top: 8px;
+
+    margin-bottom: 18px;
+}
+
+
+.vehicle-lock-button {
+    width: 100%;
+
+    height: 42px;
+
+    padding: 0 12px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    color: rgba(255, 255, 255, 0.65);
+
+    font-size: 10px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease;
+}
+
+
+.vehicle-lock-button:hover {
+    background: rgba(255, 255, 255, 0.11);
+
+    color: #ffffff;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media (max-width: 500px) {
+
+    .vehicle-panels {
+        max-width: calc(100vw - 30px);
+    }
+
+}
+
+
+/* ==========================================
+   HAZARD LIGHTS — ACTIVE STATE
+   ========================================== */
+
+.vehicle-lock-button.active {
+    background: rgba(255, 35, 35, 0.22);
+
+    border-color: rgba(255, 60, 60, 0.85);
+
+    box-shadow:
+        0 0 20px rgba(255, 40, 40, 0.25),
+        inset 0 0 12px rgba(255, 40, 40, 0.08);
+}
+
+
+.vehicle-lock-button.active .lock-icon {
+    color: #ff3030;
+
+    filter:
+        drop-shadow(
+            0 0 8px
+            rgba(255, 40, 40, 0.9)
+        );
+}
+
+
+.vehicle-lock-button.active .lock-label {
+    color: #ff5555;
+}
+
+/* ==========================================
+   DOOR BUTTON POSITIONS — edit here
+   Positions are relative to .vehicle-diagram
+   (the car image). Only this block controls
+   where the six door buttons sit.
+   ========================================== */
+
+.doors-panel .zone-hood {
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.doors-panel .zone-front-left {
+    top: 70px;
+    left: 20px;
+}
+
+.doors-panel .zone-front-right {
+    top: 70px;
+    right: 28px;
+}
+
+.doors-panel .zone-rear-left {
+    top: 175px;
+    left: 20px;
+}
+
+.doors-panel .zone-rear-right {
+    top: 175px;
+    right: 29px;
+}
+
+.doors-panel .zone-trunk {
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.doors-panel .zone-hood:hover,
+.doors-panel .zone-trunk:hover {
+    transform: translateX(-50%) scale(1.04);
+}
+
+/* ==========================================
+   DRAGGABLE PLAYER
+   ========================================== */
+
+#audio-app {
+    position: fixed !important;
+
+    right: auto !important;
+    bottom: auto !important;
+
+    transform: none !important;
+
+    margin: 0 !important;
+
+    pointer-events: auto !important;
+    user-select: none !important;
+}
+
+/* Cursor when dragging is available */
+
+#audio-app.window-draggable {
+    cursor: default;
+    pointer-events: auto !important;
+}
+
+/* While dragging */
+
+#audio-app.window-dragging {
+    cursor: grabbing !important;
+    user-select: none !important;
+}
+
+#audio-app.window-dragging * {
+    user-select: none !important;
+}
+
+/* ==========================================
+   SEAT SWITCHING
+   ========================================== */
+
+.vehicle-seat-section {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 14px;
+
+    position: relative;
+    top: -25px;
+}
+
+.vehicle-seat-title {
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    opacity: 0.65;
+    margin-bottom: 8px;
+}
+
+/* Square containing the 4 seats */
+
+.vehicle-seat-layout {
+    position: relative;
+    width: 100%;
+    height: 150px;
+}
+
+/* Buttons */
+
+.vehicle-seat-button {
+    position: absolute;
+
+    width: 105px;
+    height: 20px;
+
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 9px;
+
+    background: rgba(255, 255, 255, 0.045);
+
+    color: #fff;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        transform 0.15s ease;
+}
+
+.vehicle-seat-button:hover {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(255, 255, 255, 0.22);
+}
+
+.vehicle-seat-button:active {
+    transform: scale(0.97);
+}
+
+.vehicle-seat-button .seat-label {
+    font-size: 9px;
+    white-space: nowrap;
+}
+
+
+/* ==========================================
+   POSITION OF THE 4 SEATS
+   ========================================== */
+
+.vehicle-seat-layout .seat-driver {
+    top: 0px;
+    left: 55px;
+}
+
+.vehicle-seat-layout .seat-passenger {
+    top: 0px;
+    right: 55px;
+}
+
+.vehicle-seat-layout .seat-rear-left {
+    bottom: 0px;
+    left: 55px;
+}
+
+.vehicle-seat-layout .seat-rear-right {
+    bottom: 0px;
+    right: 55px;
+}
+
+/* ==========================================
+   CENTER ICON
+   ========================================== */
+
+.vehicle-seat-center {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(
+        -50%,
+        -50%
+    );
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(
+        255,
+        255,
+        255,
+        0.14
+    );
+
+    background: rgba(
+        255,
+        255,
+        255,
+        0.055
+    );
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.seat-center-icon {
+    font-size: 22px;
+
+    opacity: 0.75;
+
+    filter:
+        drop-shadow(
+            0 0 6px
+            rgba(255, 255, 255, 0.20)
+        );
+}
+
+/* ==========================================
+   WINDOW LOCK BUTTON
+   ========================================== */
+
+.window-lock-btn {
+    width: 32px !important;
+    height: 32px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 0 !important;
+
+    border: none !important;
+    border-radius: 9px !important;
+
+    background: rgba(255, 255, 255, 0.06) !important;
+
+    color: rgba(255, 255, 255, 0.65) !important;
+
+    font-size: 16px !important;
+    line-height: 1 !important;
+
+    cursor: pointer !important;
+
+    appearance: none !important;
+    -webkit-appearance: none !important;
+
+    outline: none !important;
+    box-shadow: none !important;
+
+    transition:
+        background 0.15s ease,
+        color 0.15s ease,
+        transform 0.15s ease !important;
+}
+
+.window-lock-btn:hover {
+    background: rgba(255, 255, 255, 0.11) !important;
+    color: #ffffff !important;
+}
+
+.window-lock-btn:active {
+    transform: scale(0.96);
+}
+
+.window-lock-btn.locked {
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: rgba(255, 255, 255, 0.65) !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.window-lock-btn.unlocked {
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: rgba(255, 255, 255, 0.65) !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.window-lock-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    font-size: 16px;
+    line-height: 1;
+
+    background: transparent !important;
+    border: none !important;
+}
+
+/* ==========================================
+   AUDIO EQUALIZER
+   ========================================== */
+
+.audio-effects-panel {
+    width: 100%;
+    margin-bottom: 18px;
+    padding: 10px 0 0;
+}
+
+.audio-effects-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    margin-bottom: 9px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    color: rgba(255, 255, 255, 0.42);
+}
+
+.audio-effects-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 7px;
+}
+
+.audio-effect-item {
+    min-height: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.035);
+    font-family: inherit;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+.audio-effect-item:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.16);
+}
+
+.audio-effect-item:active {
+    transform: scale(0.96);
+}
+
+.audio-effect-item.active {
+    background: rgba(64, 200, 255, 0.16);
+    border-color: rgba(64, 200, 255, 0.55);
+}
+
+.audio-effect-item.active .audio-effect-icon,
+.audio-effect-item.active .audio-effect-label {
+    color: #40c8ff;
+}
+
+.audio-effect-icon {
+    font-size: 14px;
+    line-height: 1;
+    opacity: 0.8;
+}
+
+.audio-effect-label {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+
+/* ==========================================
+   BUILT-IN NOTIFICATIONS (fallback without wts_notify)
+   Fixed style. To customize the notifications,
+   install wts_notify (free): it is used
+   automatically if it is started.
+   ========================================== */
+
+:root {
+    --wts-notify-font: 'Plus Jakarta Sans', Arial, Helvetica, sans-serif;
+    --wts-notify-ring-font: 'Raleway', Arial, sans-serif;
+}
+
+.wts-notify {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.wts-notify.center-right  { right: 20px; top: 50%; transform: translateY(-50%); align-items: flex-end; }
+.wts-notify.center-left   { left: 20px;  top: 50%; transform: translateY(-50%); align-items: flex-start; }
+.wts-notify.top-right     { right: 20px; top: 20px; align-items: flex-end; }
+.wts-notify.top-left      { left: 20px;  top: 20px; align-items: flex-start; }
+.wts-notify.bottom-right  { right: 20px; bottom: 20px; align-items: flex-end; }
+.wts-notify.bottom-left   { left: 20px;  bottom: 20px; align-items: flex-start; }
+.wts-notify.top-center    { left: 50%; top: 20px; transform: translateX(-50%); align-items: center; }
+
+.wts-toast {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 240px;
+    max-width: 340px;
+    padding: 10px 14px 11px 14px;
+    border-radius: 8px;
+    background: rgba(28, 28, 32, 0.96);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+    color: #ffffff;
+    font-family: var(--wts-notify-font);
+    -webkit-font-smoothing: antialiased;
+    opacity: 0;
+    transform: translateX(16px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.wts-notify.center-left .wts-toast,
+.wts-notify.top-left .wts-toast,
+.wts-notify.bottom-left .wts-toast {
+    transform: translateX(-16px);
+}
+
+.wts-toast.show { opacity: 1; transform: translateX(0); }
+.wts-toast.hide { opacity: 0; }
+
+.wts-toast.info    { --wts-color: #9aa0a6; }
+.wts-toast.success { --wts-color: #2ecc71; }
+.wts-toast.error   { --wts-color: #e74c3c; }
+
+.wts-toast-body { min-width: 0; }
+
+.wts-ring {
+    position: relative;
+    flex: none;
+    width: 38px;
+    height: 38px;
+}
+
+.wts-ring svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.wts-ring circle { fill: none; stroke-width: 2.5; }
+.wts-ring .bg { stroke: rgba(255, 255, 255, 0.12); }
+.wts-ring .fg {
+    stroke: var(--wts-color);
+    stroke-linecap: round;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 0;
+    animation: wts-ring linear forwards;
+}
+
+@keyframes wts-ring {
+    from { stroke-dashoffset: 0; }
+    to   { stroke-dashoffset: 100; }
+}
+
+.wts-ring-letter {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--wts-notify-ring-font);
+    font-weight: 700;
+    font-size: 16px;
+    color: #ffffff;
+    line-height: 1;
+}
+
+.wts-toast-title {
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    opacity: 0.65;
+    margin-bottom: 3px;
+}
+
+.wts-toast-text {
+    font-size: 13px;
+    line-height: 1.35;
+}

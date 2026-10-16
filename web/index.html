@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Vehicle Audio</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <style>
+        /* ==========================================
+           SEATS PANEL
+           ========================================== */
+
+        .seats-panel {
+            position: relative;
+        }
+
+        .seats-content {
+            width: 100%;
+            margin-top: 18px;
+        }
+
+        .seats-title {
+            text-align: center;
+            font-size: 11px;
+            letter-spacing: 1.6px;
+            opacity: 0.7;
+            margin-bottom: 14px;
+        }
+
+        .seats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+            width: 100%;
+        }
+
+        .vehicle-seat-button {
+            min-height: 58px;
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.045);
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            font-size: 11px;
+            transition: 0.15s ease;
+        }
+
+        .vehicle-seat-button:hover {
+            background: rgba(255, 255, 255, 0.09);
+            border-color: rgba(255, 255, 255, 0.20);
+        }
+
+        .vehicle-seat-button:active {
+            transform: scale(0.98);
+        }
+
+        .vehicle-seat-button .seat-icon {
+            opacity: 0.75;
+            font-size: 14px;
+        }
+
+        .vehicle-seat-button .seat-label {
+            white-space: nowrap;
+        }
+
+
+        /* ==========================================
+           LANGUAGE SELECTOR
+           ========================================== */
+        .language-selector {
+            margin-left: auto;
+            margin-right: 8px;
+            display: flex;
+            align-items: center;
+			gap: 12px;
+        }
+
+        .language-selector select {
+            appearance: none;
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.045);
+            color: #fff;
+            padding: 6px 8px;
+            font-size: 10px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .language-selector select:hover {
+            background: rgba(255, 255, 255, 0.09);
+            border-color: rgba(255, 255, 255, 0.20);
+        }
+
+        .language-selector select option {
+            background: #111;
+            color: #fff;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div id="audio-app" class="hidden">
+
+    <div class="player">
+
+        <div
+            id="vehicle-panels"
+            class="vehicle-panels"
+        >
+
+            <!-- ==========================================
+                 PANNEAU AUDIO
+                 ========================================== -->
+
+            <div
+                id="audio-panel"
+                class="vehicle-panel audio-panel"
+            >
+
+                <div class="header">
+
+                    <div>
+
+                        <div class="small-title"><span data-i18n="audio_brand">WTS-VEHICULE AUDIO</span></div>
+
+                        <div class="vehicle-name"><span data-i18n="audio_system">Système audio</span></div>
+
+                    </div>
+
+				<div class="language-selector">
+
+					<!-- PADLOCK -->
+					<button
+						id="window-lock-btn"
+						class="window-lock-btn locked"
+						type="button"
+						title="Déverrouiller l'interface"
+						aria-label="Déverrouiller l'interface"
+					>
+						<span class="window-lock-icon">🔒</span>
+					</button>
+
+					<!-- LANGUAGE -->
+					<select id="language-select" aria-label="Language">
+						<option value="fr">🇫🇷 FR</option>
+						<option value="en">🇬🇧 EN</option>
+						<option value="es">🇪🇸 ES</option>
+						<option value="de">🇩🇪 DE</option>
+						<option value="it">🇮🇹 IT</option>
+					</select>
+
+				</div>
+
+                    <button
+                        id="close-btn"
+                        class="close-btn"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+                <div class="cover-container">
+
+                    <div class="cover">
+
+                        <img
+                            id="cover-image"
+                            src=""
+                            alt=""
+                            style="display: none;"
+                        >
+
+                        <div
+                            id="cover-icon"
+                            class="music-icon"
+                        >
+                            ♫
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="track-info">
+
+                    <div
+                        id="track-title"
+                        class="track-title"
+                    ><span data-i18n="no_track">Aucun morceau</span></div>
+
+                    <div
+                        id="track-artist"
+                        class="track-artist"
+                    ><span data-i18n="no_audio">Aucun audio en lecture</span></div>
+
+                </div>
+
+                <div class="progress-container">
+
+                    <span id="current-time">
+                        0:00
+                    </span>
+
+                    <div class="progress-bar">
+
+                        <div
+                            id="progress"
+                            class="progress"
+                        ></div>
+
+                    </div>
+
+                    <span id="duration">
+                        0:00
+                    </span>
+
+                </div>
+
+                <div class="controls">
+
+                    <button
+                        id="shuffle"
+                        class="control secondary"
+                    >
+                        ⤨
+                    </button>
+
+                    <button
+                        id="previous"
+                        class="control"
+                    >
+                        ⏮
+                    </button>
+
+                    <button
+                        id="play"
+                        class="play-button"
+                    >
+                        ▶
+                    </button>
+
+                    <button
+                        id="next"
+                        class="control"
+                    >
+                        ⏭
+                    </button>
+
+                    <button
+                        id="repeat"
+                        class="control secondary"
+                    >
+                        ↻
+                    </button>
+
+                </div>
+
+                <div class="volume-container">
+
+                    <span class="volume-icon">
+                        🔊
+                    </span>
+
+                    <input
+                        id="volume"
+                        type="range"
+                        min="0"
+                        max="100"
+                        value="35"
+                    >
+
+                </div>
+
+                <!-- ==========================================
+                     AMÉLIORATION AUDIO
+                     ========================================== -->
+
+                <div class="audio-effects-panel">
+
+                    <div class="audio-effects-title">
+                        <span>🎚️</span>
+                        <span>ÉGALISEUR AUDIO</span>
+                    </div>
+
+                    <div class="audio-effects-grid">
+
+                        <button type="button" class="audio-effect-item" id="audio-effect-bass" data-band="bass">
+                            <span class="audio-effect-icon">🎵</span>
+                            <span class="audio-effect-label">BASS</span>
+                        </button>
+
+                        <button type="button" class="audio-effect-item" id="audio-effect-subwoofer" data-band="subwoofer">
+                            <span class="audio-effect-icon">🔊</span>
+                            <span class="audio-effect-label">SUB</span>
+                        </button>
+
+                        <button type="button" class="audio-effect-item" id="audio-effect-mid" data-band="mid">
+                            <span class="audio-effect-icon">🎚️</span>
+                            <span class="audio-effect-label">MID</span>
+                        </button>
+
+                        <button type="button" class="audio-effect-item" id="audio-effect-treble" data-band="treble">
+                            <span class="audio-effect-icon">✨</span>
+                            <span class="audio-effect-label">TREBLE</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="autoplay-container">
+
+                    <span class="autoplay-label"><span data-i18n="auto_access">Auto Access</span></span>
+
+                    <button
+                        id="autoplay-toggle"
+                        class="autoplay-toggle"
+                        type="button"
+                    >
+                        OFF
+                    </button>
+
+                </div>
+
+                <div class="playlist-header">
+
+                    <span><span data-i18n="playlist">Playlist</span></span>
+
+                    <button id="add-track"><span data-i18n="add">+ Ajouter</span></button>
+
+                </div>
+
+                <div
+                    id="playlist"
+                    class="playlist"
+                >
+
+                    <div class="empty-playlist"><span data-i18n="empty_playlist">Aucun morceau dans la playlist</span></div>
+
+                </div>
+
+                <div class="vehicle-navigation">
+
+                    <button
+                        id="audio-nav"
+                        class="vehicle-nav active"
+                        type="button"
+                    >
+                        AUDIO
+                    </button>
+
+                    <button
+                        id="doors-nav"
+                        class="vehicle-nav"
+                        type="button"
+                    >
+                        <span data-i18n="vehicle"><span data-i18n="vehicle">VEHICULE</span></span>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==========================================
+                 PANNEAU VEHICULE
+                 ========================================== -->
+
+            <div
+                id="doors-panel"
+                class="vehicle-panel doors-panel"
+            >
+
+                <div class="header">
+
+                    <div>
+
+                        <div class="small-title"><span data-i18n="vehicle_brand">WTS-VEHICULE CONTROLE</span></div>
+
+                        <div class="vehicle-name"><span data-i18n="vehicle_doors">Système véhicule</span></div>
+
+                    </div>
+
+                    <div class="language-selector">
+                        <select id="language-select-doors" aria-label="Language">
+                            <option value="fr">🇫🇷 FR</option>
+                            <option value="en">🇬🇧 EN</option>
+                            <option value="es">🇪🇸 ES</option>
+                            <option value="de">🇩🇪 DE</option>
+                            <option value="it">🇮🇹 IT</option>
+                        </select>
+                    </div>
+
+                    <button
+                        id="close-btn-doors"
+                        class="close-btn"
+                        type="button"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+                <div class="vehicle-diagram">
+
+                    <img
+                        src="sports_car.png"
+                        class="sports-car"
+                        alt="Véhicule"
+                    >
+
+                    <button
+                        id="door-hood"
+                        class="vehicle-zone zone-hood"
+                        type="button"
+                    >
+                        <span class="zone-dot"></span>
+                        <span class="zone-label"><strong data-i18n="hood">Capot</strong>
+                            <small>Fermé</small>
+                        </span>
+                    </button>
+
+                    <button
+                        id="door-front-left"
+                        class="vehicle-zone zone-front-left"
+                        type="button"
+                    >
+                        <span class="zone-dot"></span>
+                        <span class="zone-label"><strong data-i18n="front_left">Avant gauche</strong>
+                            <small>Fermée</small>
+                        </span>
+                    </button>
+
+                    <button
+                        id="door-front-right"
+                        class="vehicle-zone zone-front-right"
+                        type="button"
+                    >
+                        <span class="zone-dot"></span>
+                        <span class="zone-label"><strong data-i18n="front_right">Avant droite</strong>
+                            <small>Fermée</small>
+                        </span>
+                    </button>
+
+                    <button
+                        id="door-rear-left"
+                        class="vehicle-zone zone-rear-left"
+                        type="button"
+                    >
+                        <span class="zone-dot"></span>
+                        <span class="zone-label"><strong data-i18n="rear_left"><span class="seat-label" data-i18n="rear_left">Arrière gauche</span></strong>
+                            <small>Fermée</small>
+                        </span>
+                    </button>
+
+                    <button
+                        id="door-rear-right"
+                        class="vehicle-zone zone-rear-right"
+                        type="button"
+                    >
+                        <span class="zone-dot"></span>
+                        <span class="zone-label"><strong data-i18n="rear_right"><span class="seat-label" data-i18n="rear_right">Arrière droite</span></strong>
+                            <small>Fermée</small>
+                        </span>
+                    </button>
+
+                    <button
+                        id="door-trunk"
+                        class="vehicle-zone zone-trunk"
+                        type="button"
+                    >
+                        <span class="zone-dot"></span>
+                        <span class="zone-label"><strong data-i18n="trunk">Coffre</strong>
+                            <small>Fermé</small>
+                        </span>
+                    </button>
+
+                </div>
+				
+				<!-- ========================================== -->
+				<!-- SEAT SWITCHING -->
+				<!-- ========================================== -->
+
+				<div class="vehicle-seat-section">
+
+					<div class="vehicle-seat-title"><div class="vehicle-seat-title" data-i18n="change_seat">CHANGER DE SIÈGE</div></div>
+
+					<div class="vehicle-seat-layout">
+
+						<!-- Driver -->
+						<button
+							id="seat-driver"
+							class="vehicle-seat-button seat-driver"
+							type="button"
+						>
+							<span class="seat-label"><span class="seat-label" data-i18n="driver">Conducteur</span></span>
+						</button>
+
+						<!-- Front passenger -->
+						<button
+							id="seat-passenger"
+							class="vehicle-seat-button seat-passenger"
+							type="button"
+						>
+							<span class="seat-label"><span class="seat-label" data-i18n="passenger">Passager avant</span></span>
+						</button>
+
+						<!-- Center icon -->
+						<div class="vehicle-seat-center">
+							<span class="seat-center-icon">🪑</span>
+						</div>
+
+						<!-- Rear left -->
+						<button
+							id="seat-rear-left"
+							class="vehicle-seat-button seat-rear-left"
+							type="button"
+						>
+							<span class="seat-label"><span class="seat-label" data-i18n="rear_left">Arrière gauche</span></span>
+						</button>
+
+						<!-- Rear right -->
+						<button
+							id="seat-rear-right"
+							class="vehicle-seat-button seat-rear-right"
+							type="button"
+						>
+							<span class="seat-label"><span class="seat-label" data-i18n="rear_right">Arrière droite</span></span>
+						</button>
+
+					</div>
+
+				</div>
+
+
+                <!-- DRIVE CONTROL -->
+
+                <button
+                    id="drive-control"
+                    class="vehicle-lock-button"
+                    type="button"
+                >
+                    <span class="lock-icon">🎮</span>
+
+                    <span class="lock-label">
+                        DRIVE CONTROL ACTIVÉ
+                    </span>
+                </button>
+
+
+                <!-- HAZARD LIGHTS -->
+
+                <div class="vehicle-lock-section">
+
+                    <button
+                        id="vehicle-hazards"
+                        class="vehicle-lock-button"
+                        type="button"
+                    >
+                        <span class="lock-icon">🚨</span>
+
+                        <span class="lock-label"><span class="lock-label" data-i18n="hazards">Feux de détresse</span></span>
+                    </button>
+
+                </div>
+
+
+                <div class="vehicle-navigation">
+
+                    <button
+                        id="audio-nav-doors"
+                        class="vehicle-nav"
+                        type="button"
+                    >
+                        AUDIO
+                    </button>
+
+                    <button
+                        id="doors-nav-doors"
+                        class="vehicle-nav active"
+                        type="button"
+                    >
+                        <span data-i18n="vehicle"><span data-i18n="vehicle">VEHICULE</span></span>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+<!-- ==========================================
+     ADD TRACK WINDOW
+     ========================================== -->
+
+<div
+    id="add-modal"
+    class="modal hidden"
+>
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <div>
+
+                <div class="modal-title"><div class="modal-title" data-i18n="add_track_title">Ajouter un morceau</div></div>
+
+                <div class="modal-subtitle"><div class="modal-subtitle" data-i18n="add_youtube">Ajouter un lien YouTube</div></div>
+
+            </div>
+
+            <button
+                id="modal-close"
+                class="close-btn"
+                type="button"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <div class="input-group">
+
+            <label for="youtube-url"><label for="youtube-url" data-i18n="youtube_url">URL YouTube</label></label>
+
+            <input
+                id="youtube-url"
+                type="text"
+                placeholder="https://www.youtube.com/watch?v=..."
+                autocomplete="off"
+            >
+
+        </div>
+
+        <div class="modal-actions">
+
+            <button
+                id="modal-cancel"
+                class="modal-button cancel"
+                type="button"
+            ><span data-i18n="cancel">Annuler</span></button>
+
+            <button
+                id="modal-add"
+                class="modal-button add"
+                type="button"
+            ><span data-i18n="add_only">Ajouter</span></button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div
+    id="youtube-player"
+    style="
+        position: fixed;
+        width: 200px;
+        height: 200px;
+        left: -1000px;
+        top: -1000px;
+        opacity: 0;
+        pointer-events: none;
+    "
+></div>
+
+
+<script src="https://www.youtube.com/iframe_api"></script>
+
+
+<script>
+(function () {
+    const translations = {
+        fr: {
+            audio_brand: 'WTS-VEHICULE AUDIO', audio_system: 'Système audio', no_track: 'Aucun morceau', no_audio: 'Aucun audio en lecture',
+            auto_access: 'Auto Access', playlist: 'Playlist', add: '+ Ajouter', empty_playlist: 'Aucun morceau dans la playlist', vehicle: 'VEHICULE',
+            vehicle_brand: 'WTS-VEHICULE CONTROLE', vehicle_doors: 'Système véhicule', hood: 'Capot', front_left: 'Avant gauche', front_right: 'Avant droite',
+            rear_left: 'Arrière gauche', rear_right: 'Arrière droite', trunk: 'Coffre', change_seat: 'CHANGER DE SIÈGE', driver: 'Conducteur', passenger: 'Passager avant',
+            hazards: 'Feux de détresse', add_track_title: 'Ajouter un morceau', add_youtube: 'Ajouter un lien YouTube', youtube_url: 'URL YouTube', cancel: 'Annuler', add_only: 'Ajouter'
+        },
+        en: {
+            audio_brand: 'WTS-VEHICLE AUDIO', audio_system: 'Audio system', no_track: 'No track', no_audio: 'No audio playing', auto_access: 'Auto Access', playlist: 'Playlist',
+            add: '+ Add', empty_playlist: 'No tracks in playlist', vehicle: 'VEHICLE', vehicle_brand: 'WTS-VEHICLE CONTROL', vehicle_doors: 'Vehicle System', hood: 'Hood',
+            front_left: 'Front left', front_right: 'Front right', rear_left: 'Rear left', rear_right: 'Rear right', trunk: 'Trunk', change_seat: 'CHANGE SEAT', driver: 'Driver',
+            passenger: 'Front passenger', hazards: 'Hazard lights', add_track_title: 'Add a track', add_youtube: 'Add a YouTube link', youtube_url: 'YouTube URL', cancel: 'Cancel', add_only: 'Add'
+        },
+        es: {
+            audio_brand: 'WTS-VEHÍCULO AUDIO', audio_system: 'Sistema de audio', no_track: 'Ninguna canción', no_audio: 'Ningún audio en reproducción', auto_access: 'Acceso automático', playlist: 'Lista de reproducción',
+            add: '+ Añadir', empty_playlist: 'No hay canciones en la lista', vehicle: 'VEHÍCULO', vehicle_brand: 'WTS-VEHÍCULO CONTROL', vehicle_doors: 'Sistema del vehículo', hood: 'Capó',
+            front_left: 'Delantera izquierda', front_right: 'Delantera derecha', rear_left: 'Trasera izquierda', rear_right: 'Trasera derecha', trunk: 'Maletero', change_seat: 'CAMBIAR DE ASIENTO', driver: 'Conductor',
+            passenger: 'Pasajero delantero', hazards: 'Luces de emergencia', add_track_title: 'Añadir una canción', add_youtube: 'Añadir un enlace de YouTube', youtube_url: 'URL de YouTube', cancel: 'Cancelar', add_only: 'Añadir'
+        },
+        de: {
+            audio_brand: 'WTS-FAHRZEUG AUDIO', audio_system: 'Audiosystem', no_track: 'Kein Titel', no_audio: 'Keine Wiedergabe', auto_access: 'Auto-Zugriff', playlist: 'Wiedergabeliste',
+            add: '+ Hinzufügen', empty_playlist: 'Keine Titel in der Wiedergabeliste', vehicle: 'FAHRZEUG', vehicle_brand: 'WTS-FAHRZEUG KONTROLLE', vehicle_doors: 'Fahrzeugsystem', hood: 'Motorhaube',
+            front_left: 'Vorne links', front_right: 'Vorne rechts', rear_left: 'Hinten links', rear_right: 'Hinten rechts', trunk: 'Kofferraum', change_seat: 'SITZ WECHSELN', driver: 'Fahrer',
+            passenger: 'Beifahrer', hazards: 'Warnblinkanlage', add_track_title: 'Titel hinzufügen', add_youtube: 'YouTube-Link hinzufügen', youtube_url: 'YouTube-URL', cancel: 'Abbrechen', add_only: 'Hinzufügen'
+        },
+        it: {
+            audio_brand: 'WTS-VEICOLO AUDIO', audio_system: 'Sistema audio', no_track: 'Nessun brano', no_audio: 'Nessun audio in riproduzione', auto_access: 'Accesso automatico', playlist: 'Playlist',
+            add: '+ Aggiungi', empty_playlist: 'Nessun brano nella playlist', vehicle: 'VEICOLO', vehicle_brand: 'WTS-VEICOLO CONTROLLO', vehicle_doors: 'Sistema del veicolo', hood: 'Cofano',
+            front_left: 'Anteriore sinistra', front_right: 'Anteriore destra', rear_left: 'Posteriore sinistra', rear_right: 'Posteriore destra', trunk: 'Bagagliaio', change_seat: 'CAMBIA SEDILE', driver: 'Conducente',
+            passenger: 'Passeggero anteriore', hazards: 'Luci di emergenza', add_track_title: 'Aggiungi un brano', add_youtube: 'Aggiungi un link YouTube', youtube_url: 'URL YouTube', cancel: 'Annulla', add_only: 'Aggiungi'
+        }
+    };
+
+    function applyLanguage(lang) {
+        const dict = translations[lang] || translations.fr;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.dataset.i18n;
+            if (dict[key] !== undefined) el.textContent = dict[key];
+        });
+        document.documentElement.lang = lang;
+        localStorage.setItem('vehicle_audio_language', lang);
+        document.querySelectorAll('#language-select, #language-select-doors').forEach(select => select.value = lang);
+    }
+
+    const saved = localStorage.getItem('vehicle_audio_language') || 'fr';
+    applyLanguage(saved);
+    document.getElementById('language-select')?.addEventListener('change', e => applyLanguage(e.target.value));
+    document.getElementById('language-select-doors')?.addEventListener('change', e => applyLanguage(e.target.value));
+})();
+</script>
+
+<script src="app.js"></script>
+
+</body>
+</html>
