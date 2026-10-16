@@ -5,11 +5,14 @@
 **Free & open source (GPL-3.0)** · Source & releases: https://github.com/Wts-scripts/wts_vehicleaudio
 
 Made by **WTS Scripts**
+🎦 Preview: https://youtu.be/zPOGEXqfpGs
 📖 Documentation: https://wts-docs.vercel.app/wts_vehicleaudio
 💬 Discord (community): https://discord.gg/5VMgt422WX
 🛒 Other WTS scripts: https://wts-scripts.tebex.store
 
 🇬🇧 [English](#english) · 🇫🇷 [Français](#français) · 🇩🇪 [Deutsch](#deutsch) · 🇪🇸 [Español](#español) · 🇮🇹 [Italiano](#italiano)
+
+[![Preview](https://img.youtube.com/vi/zPOGEXqfpGs/maxresdefault.jpg)](https://youtu.be/zPOGEXqfpGs)
 
 ---
 
