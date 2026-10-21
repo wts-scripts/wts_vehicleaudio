@@ -5,7 +5,7 @@ author 'WTS Scripts'
 description 'WTS Vehicle Audio - standalone in-vehicle YouTube player (free, GPL-3.0)'
 license 'GPL-3.0-or-later'
 repository 'https://github.com/Wts-scripts/wts_vehicleaudio'
-version '1.0.0'
+version '1.1.0'
 
 lua54 'yes'
 

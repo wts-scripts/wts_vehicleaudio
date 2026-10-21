@@ -28,6 +28,22 @@ Config.Command = 'caraudio'
 -- Key to open the interface
 Config.OpenKey = 'A'
 
+-- ==========================================
+-- GTA NATIVE RADIO
+-- ==========================================
+
+-- The GTA radio wheel sits on the physical A key on
+-- AZERTY keyboards (Q on QWERTY) and can pop up while
+-- you use the player. These options turn it off.
+Config.GtaRadio = {
+    -- Block the GTA radio wheel and station switching in vehicles
+    disableWheel = true,
+
+    -- Fully turn off the GTA radio in vehicles
+    -- (so it never plays over the player's music)
+    disableRadio = true
+}
+
 -- Maximum distance at which the vehicle can be heard
 Config.MaxDistance = 25.0
 

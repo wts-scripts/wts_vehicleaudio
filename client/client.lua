@@ -677,6 +677,60 @@ RegisterKeyMapping(
     Config.OpenKey
 )
 
+-- ==========================================
+-- GTA NATIVE RADIO
+-- ==========================================
+
+CreateThread(function()
+
+    local gtaRadio = Config.GtaRadio or {}
+    local disableWheel = gtaRadio.disableWheel ~= false
+    local disableRadio = gtaRadio.disableRadio ~= false
+
+    if not disableWheel and not disableRadio then
+        return
+    end
+
+    if disableRadio then
+        SetUserRadioControlEnabled(false)
+    end
+
+    local lastVehicle = 0
+
+    while true do
+
+        local ped = PlayerPedId()
+        local vehicle = GetVehiclePedIsIn(ped, false)
+
+        if vehicle ~= 0 then
+
+            if disableWheel then
+                DisableControlAction(0, 85, true) -- radio wheel (A AZERTY / Q QWERTY)
+                DisableControlAction(0, 81, true) -- next station
+                DisableControlAction(0, 82, true) -- previous station
+            end
+
+            if disableRadio then
+                if vehicle ~= lastVehicle then
+                    lastVehicle = vehicle
+                    SetVehicleRadioEnabled(vehicle, false)
+                end
+
+                if GetPlayerRadioStationName() then
+                    SetVehRadioStation(vehicle, 'OFF')
+                end
+            end
+
+            Wait(0)
+        else
+            lastVehicle = 0
+            Wait(500)
+        end
+
+    end
+
+end)
+
 RegisterNUICallback(
     'close',
     function(_, cb)

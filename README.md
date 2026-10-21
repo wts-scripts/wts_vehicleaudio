@@ -29,6 +29,7 @@ Made by **WTS Scripts**
 - Sound leaks out when a door, the hood or the trunk is open
 - 4-band equalizer (sub / bass / mid / treble), defaults editable in `config.lua`
 - Seat switching from the UI
+- GTA native radio wheel and radio turned off in vehicles (optional)
 - Optional integration with your vehicle key / remote start script
 - Notifications via **wts_notify** (free, recommended) or built-in fallback — no ox_lib; 5 UI languages (EN / FR / DE / ES / IT)
 - Editable `config.lua` and `web/` (UI) — full source code included
@@ -55,6 +56,10 @@ Open the interface in a vehicle with the configured key. **Default key: `A`.**
 
 > On an AZERTY keyboard the physical key is `Q`. Every key can be rebound in **Settings → Key Bindings → FiveM**.
 
+### Updating
+
+Replace every file **except `config.lua`** if you edited it, then `restart wts_vehicleaudio`. New options are optional: a 1.0.0 `config.lua` keeps working with the defaults. Changes: see `CHANGELOG.md`.
+
 ### Configuration
 
 Everything lives in `config.lua`. Main options:
@@ -63,6 +68,8 @@ Everything lives in `config.lua`. Main options:
 |---|---|---|
 | `Config.Debug` | `false` | Prints debug lines in F8 / server console |
 | `Config.EvictGhostDrivers` | `false` | Removes invisible peds blocking the driver seat (see below) |
+| `Config.GtaRadio.disableWheel` | `true` | Blocks the GTA radio wheel (physical `A` on AZERTY / `Q` on QWERTY) and station switching in vehicles |
+| `Config.GtaRadio.disableRadio` | `true` | Turns the GTA radio off in vehicles so it never plays over your music |
 | `Config.Notifications` | enabled, `center-right`, 3500 ms | Notifications: title, position, duration, `locale`. Uses **wts_notify** automatically if it is started, otherwise built-in toasts |
 | `Config.KeySystem.clientExport` | — | Export used to check if the player has the vehicle keys |
 | `Config.KeySystem.lightsExport` | — | Export used to control vehicle lights |
@@ -129,6 +136,10 @@ Le **serveur** doit pouvoir joindre `youtube.com`. Aucun framework requis.
 
 Ouvrez l'interface dans un véhicule avec la touche configurée. **Touche par défaut : `A`** (sur clavier AZERTY, c'est la touche physique `Q`). Les touches se modifient dans **Paramètres → Touches → FiveM**.
 
+La roue radio GTA (touche `A` en AZERTY) et la radio GTA sont désactivées en véhicule. Pour les garder : `Config.GtaRadio` dans `config.lua`.
+
+**Mise à jour** : remplacez tous les fichiers sauf votre `config.lua` (l'ancien reste compatible), puis `restart wts_vehicleaudio`. Détails dans `CHANGELOG.md`.
+
 Fonctions : lecture / pause, piste précédente / suivante, volume, aléatoire, répétition, playlists, musique depuis YouTube, égaliseur, changement de siège, audio du véhicule (portes, capot, coffre).
 
 ### Configuration
@@ -166,6 +177,10 @@ Der **Server** muss `youtube.com` erreichen können. Kein Framework erforderlich
 ### Verwendung
 
 Oberfläche im Fahrzeug mit der konfigurierten Taste öffnen. **Standardtaste: `A`** (QWERTY-Bezeichnung). Tasten lassen sich unter **Einstellungen → Tastenbelegung → FiveM** ändern.
+
+Das GTA-Radiorad und das GTA-Radio sind im Fahrzeug deaktiviert. Zum Beibehalten: `Config.GtaRadio` in `config.lua`.
+
+**Update**: alle Dateien außer Ihrer `config.lua` ersetzen (die alte bleibt kompatibel), dann `restart wts_vehicleaudio`. Details in `CHANGELOG.md`.
 
 Funktionen: Abspielen / Pause, vorheriger / nächster Titel, Lautstärke, Zufallswiedergabe, Wiederholung, Playlists, Musik von YouTube, Equalizer, Sitzwechsel, Fahrzeug-Audio (Türen, Motorhaube, Kofferraum).
 
@@ -205,6 +220,10 @@ El **servidor** debe poder acceder a `youtube.com`. No requiere framework.
 
 Abre la interfaz dentro de un vehículo con la tecla configurada. **Tecla predeterminada: `A`**. Las teclas se cambian en **Ajustes → Controles → FiveM**.
 
+La rueda de radio de GTA y la radio de GTA se desactivan en el vehículo. Para mantenerlas: `Config.GtaRadio` en `config.lua`.
+
+**Actualización**: reemplaza todos los archivos salvo tu `config.lua` (el anterior sigue siendo compatible) y luego `restart wts_vehicleaudio`. Detalles en `CHANGELOG.md`.
+
 Funciones: reproducir / pausar, pista anterior / siguiente, volumen, aleatorio, repetición, playlists, música desde YouTube, ecualizador, cambio de asiento, audio del vehículo (puertas, capó, maletero).
 
 ### Configuración
@@ -242,6 +261,10 @@ Il **server** deve poter raggiungere `youtube.com`. Nessun framework richiesto.
 ### Utilizzo
 
 Apri l'interfaccia in un veicolo con il tasto configurato. **Tasto predefinito: `A`**. I tasti si modificano in **Impostazioni → Comandi → FiveM**.
+
+La ruota radio di GTA e la radio di GTA sono disattivate nel veicolo. Per mantenerle: `Config.GtaRadio` in `config.lua`.
+
+**Aggiornamento**: sostituisci tutti i file tranne il tuo `config.lua` (quello vecchio resta compatibile), poi `restart wts_vehicleaudio`. Dettagli in `CHANGELOG.md`.
 
 Funzioni: riproduci / pausa, brano precedente / successivo, volume, casuale, ripetizione, playlist, musica da YouTube, equalizzatore, cambio posto, audio del veicolo (porte, cofano, bagagliaio).
 
