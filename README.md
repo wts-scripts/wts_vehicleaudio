@@ -58,7 +58,9 @@ Open the interface in a vehicle with the configured key. **Default key: `A`.**
 
 ### Updating
 
-Replace every file **except `config.lua`** if you edited it, then `restart wts_vehicleaudio`. New options are optional: a 1.0.0 `config.lua` keeps working with the defaults. Changes: see `CHANGELOG.md`.
+> **1.1.2 — important update:** fixes a freeze on recent FiveM builds (character selection blocked, then the game freezing after spawn). Every server should update.
+
+Replace every file **except `config.lua`** if you edited it (new file in 1.1.2: `web/player.html`), then restart the server. New options are optional: a 1.0.0 `config.lua` keeps working with the defaults. Changes: see `CHANGELOG.md`.
 
 ### Configuration
 
@@ -138,6 +140,8 @@ Ouvrez l'interface dans un véhicule avec la touche configurée. **Touche par d�
 
 La roue radio GTA (touche `A` en AZERTY) et la radio GTA sont désactivées en véhicule. Pour les garder : `Config.GtaRadio` dans `config.lua`.
 
+> **1.1.2 — mise à jour importante :** corrige un gel sur les builds FiveM récents (sélection du perso bloquée, puis jeu figé après le spawn).
+
 **Mise à jour** : remplacez tous les fichiers sauf votre `config.lua` (l'ancien reste compatible), puis `restart wts_vehicleaudio`. Détails dans `CHANGELOG.md`.
 
 Fonctions : lecture / pause, piste précédente / suivante, volume, aléatoire, répétition, playlists, musique depuis YouTube, égaliseur, changement de siège, audio du véhicule (portes, capot, coffre).
@@ -179,6 +183,8 @@ Der **Server** muss `youtube.com` erreichen können. Kein Framework erforderlich
 Oberfläche im Fahrzeug mit der konfigurierten Taste öffnen. **Standardtaste: `A`** (QWERTY-Bezeichnung). Tasten lassen sich unter **Einstellungen → Tastenbelegung → FiveM** ändern.
 
 Das GTA-Radiorad und das GTA-Radio sind im Fahrzeug deaktiviert. Zum Beibehalten: `Config.GtaRadio` in `config.lua`.
+
+> **1.1.2 — wichtiges Update:** behebt ein Einfrieren auf aktuellen FiveM-Builds (Charakterauswahl blockiert, danach friert das Spiel nach dem Spawn ein).
 
 **Update**: alle Dateien außer Ihrer `config.lua` ersetzen (die alte bleibt kompatibel), dann `restart wts_vehicleaudio`. Details in `CHANGELOG.md`.
 
@@ -222,6 +228,8 @@ Abre la interfaz dentro de un vehículo con la tecla configurada. **Tecla predet
 
 La rueda de radio de GTA y la radio de GTA se desactivan en el vehículo. Para mantenerlas: `Config.GtaRadio` en `config.lua`.
 
+> **1.1.2 — actualización importante:** corrige un bloqueo en las builds recientes de FiveM (selección de personaje bloqueada y luego el juego congelado tras el spawn).
+
 **Actualización**: reemplaza todos los archivos salvo tu `config.lua` (el anterior sigue siendo compatible) y luego `restart wts_vehicleaudio`. Detalles en `CHANGELOG.md`.
 
 Funciones: reproducir / pausar, pista anterior / siguiente, volumen, aleatorio, repetición, playlists, música desde YouTube, ecualizador, cambio de asiento, audio del vehículo (puertas, capó, maletero).
@@ -263,6 +271,8 @@ Il **server** deve poter raggiungere `youtube.com`. Nessun framework richiesto.
 Apri l'interfaccia in un veicolo con il tasto configurato. **Tasto predefinito: `A`**. I tasti si modificano in **Impostazioni → Comandi → FiveM**.
 
 La ruota radio di GTA e la radio di GTA sono disattivate nel veicolo. Per mantenerle: `Config.GtaRadio` in `config.lua`.
+
+> **1.1.2 — aggiornamento importante:** corregge un blocco sulle build recenti di FiveM (selezione del personaggio bloccata, poi gioco congelato dopo lo spawn).
 
 **Aggiornamento**: sostituisci tutti i file tranne il tuo `config.lua` (quello vecchio resta compatibile), poi `restart wts_vehicleaudio`. Dettagli in `CHANGELOG.md`.
 

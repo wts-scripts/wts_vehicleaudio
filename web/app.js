@@ -882,6 +882,11 @@ function initVehicleWebAudio(vehicleId) {
         return false;
     }
 
+    // Declared outside the try so a half-built context
+    // can be closed on failure (otherwise every retry
+    // leaks one AudioContext = audio threads piling up).
+    let audioContext = null;
+
     try {
 
         const iframe =
@@ -911,7 +916,7 @@ function initVehicleWebAudio(vehicleId) {
         // CONTEXT
         // ======================================
 
-        const audioContext =
+        audioContext =
             new AudioContext();
 
         // ======================================
@@ -1188,6 +1193,10 @@ function initVehicleWebAudio(vehicleId) {
 
     }
     catch (error) {
+
+        if (audioContext) {
+            try { audioContext.close(); } catch (e) {}
+        }
 
         return false;
 
@@ -1963,6 +1972,11 @@ function createVehicleYoutubePlayer(vehicleId) {
         return null;
     }
 
+    // YouTube API not loaded yet (player not in game)
+    if (typeof YT === 'undefined' || !YT.Player) {
+        return null;
+    }
+
     if (youtubePlayers[vehicleId]) {
         return youtubePlayers[vehicleId];
     }
@@ -2395,6 +2409,33 @@ window.onYouTubeIframeAPIReady = function () {
 // NUI MESSAGE
 // ==========================================
 
+// ==========================================
+// YOUTUBE API: LAZY LOAD
+// Loaded only after the "boot" message so that nothing
+// external (YouTube iframes, network) runs during the
+// loading screen / character selection.
+// ==========================================
+
+let youtubeApiRequested = false;
+
+function loadYoutubeApi() {
+
+    if (youtubeApiRequested) {
+        return;
+    }
+
+    youtubeApiRequested = true;
+
+    const script = document.createElement('script');
+    script.src = 'https://www.youtube.com/iframe_api';
+    script.async = true;
+    script.onerror = function () {
+        youtubeApiRequested = false;
+        console.warn('[wts_vehicleaudio] YouTube API failed to load');
+    };
+    document.head.appendChild(script);
+}
+
 window.addEventListener(
     'message',
     (event) => {
@@ -2410,6 +2451,14 @@ window.addEventListener(
         }
 
 		switch (data.action) {
+
+			// Sent by client.lua once the player is really in game
+			// (not on the loading / character selection screen).
+			case 'boot':
+
+				loadYoutubeApi();
+
+				break;
 
 			case 'windowConfig':
 
@@ -6263,25 +6312,47 @@ document
 // WATCH THE STATES MODIFIED BY THE SCRIPT
 // ==========================================
 
-const vehicleAudioI18nObserver =
-    new MutationObserver(() => {
-        refreshVehicleAudioDynamicTranslations();
-    });
+// 1.1.2 FIX: the refresh writes texts inside the observed
+// zone, which re-triggered the observer endlessly (infinite
+// loop = NUI / game freeze on recent FiveM builds). The
+// observer is now paused while the refresh writes, and its
+// own mutations are discarded.
 
 const vehicleAudioI18nRoot =
     document.getElementById('vehicle-panels');
+
+const VEHICLE_AUDIO_I18N_OPTIONS = {
+    subtree: true,
+    childList: true,
+    characterData: true,
+    attributes: true,
+    attributeFilter: ['class']
+};
+
+const vehicleAudioI18nObserver =
+    new MutationObserver(() => {
+
+        vehicleAudioI18nObserver.disconnect();
+
+        try {
+            refreshVehicleAudioDynamicTranslations();
+        } finally {
+            vehicleAudioI18nObserver.takeRecords();
+
+            if (vehicleAudioI18nRoot) {
+                vehicleAudioI18nObserver.observe(
+                    vehicleAudioI18nRoot,
+                    VEHICLE_AUDIO_I18N_OPTIONS
+                );
+            }
+        }
+    });
 
 if (vehicleAudioI18nRoot) {
 
     vehicleAudioI18nObserver.observe(
         vehicleAudioI18nRoot,
-        {
-            subtree: true,
-            childList: true,
-            characterData: true,
-            attributes: true,
-            attributeFilter: ['class']
-        }
+        VEHICLE_AUDIO_I18N_OPTIONS
     );
 }
 

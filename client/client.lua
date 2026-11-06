@@ -17,6 +17,75 @@
 local audioOpen = false
 
 -- ==========================================
+-- IN-GAME GATE (1.1.1)
+-- Nothing runs (loops, GTA radio, YouTube in the NUI)
+-- while the player is on the loading screen or the
+-- character selection: on recent FiveM builds this
+-- prevented the multicharacter menu from showing.
+-- ==========================================
+
+local inGame = false
+local nuiResync = false -- set when player.html (re)loads
+
+local function isPlayerInGame()
+
+    local playerId = PlayerId()
+    local ped = PlayerPedId()
+
+    -- Already driving: definitely in game
+    if ped ~= 0 and GetVehiclePedIsIn(ped, false) ~= 0 then
+        return true
+    end
+
+    if GetIsLoadingScreenActive() then return false end
+    if not NetworkIsPlayerActive(playerId) then return false end
+    if IsPlayerSwitchInProgress() then return false end
+    if not IsScreenFadedIn() then return false end
+    if GetRenderingCam() ~= -1 then return false end -- scripted camera (character selection)
+    if not IsPlayerControlOn(playerId) then return false end
+    if ped == 0 or not DoesEntityExist(ped) then return false end
+    if not IsEntityVisible(ped) then return false end
+    if IsEntityPositionFrozen(ped) then return false end
+
+    return true
+end
+
+local function waitUntilInGame()
+    while not inGame do
+        Wait(500)
+    end
+end
+
+CreateThread(function()
+
+    local stableChecks = 0
+
+    while not inGame do
+
+        Wait(500)
+
+        if isPlayerInGame() then
+            stableChecks = stableChecks + 1
+        else
+            stableChecks = 0
+        end
+
+        -- 3 seconds in a row in game
+        if stableChecks >= 6 then
+            inGame = true
+        end
+
+    end
+
+    SendNUIMessage({ action = 'boot' })
+
+    if Config.Debug then
+        print('[wts_vehicleaudio] player in game, audio system started')
+    end
+
+end)
+
+-- ==========================================
 -- AUDIO SOURCE VEHICLE
 -- (declared here: it is used by the audioControl
 -- callback higher up in the file, which
@@ -574,6 +643,10 @@ local function openAudio()
     local vehicle =
         VehicleAudio:GetCurrentVehicle()
 
+    if not inGame then
+        return
+    end
+
     if not vehicle then
         Notify('notInVehicle', 'info')
         return
@@ -683,6 +756,8 @@ RegisterKeyMapping(
 
 CreateThread(function()
 
+    waitUntilInGame()
+
     local gtaRadio = Config.GtaRadio or {}
     local disableWheel = gtaRadio.disableWheel ~= false
     local disableRadio = gtaRadio.disableRadio ~= false
@@ -743,6 +818,18 @@ RegisterNUICallback(
     'ready',
     function(_, cb)
         cb('ok')
+
+        -- player.html has just loaded (after "boot"):
+        -- send it everything it missed.
+        SendNUIMessage({ action = 'boot' }) -- loads the YouTube API
+        sendAudioDistanceConfig()
+        sendAudioEffectsConfig()
+
+        for vehicleId in pairs(remoteActive) do
+            remoteActive[vehicleId] = nil
+        end
+
+        nuiResync = true
     end
 )
 
@@ -1161,6 +1248,12 @@ RegisterNetEvent(
 
         vehicleStates[netId] = state
 
+        -- Still loading / character selection: keep the
+        -- state, the scan thread will apply it later.
+        if not inGame then
+            return
+        end
+
         if isCurrent then
             sendVehicleState()
             return
@@ -1295,6 +1388,8 @@ end
 -- remote players depending on distance.
 CreateThread(function()
 
+    waitUntilInGame()
+
     while true do
 
         local interval =
@@ -1402,9 +1497,18 @@ local lastInsideState = nil
 
 CreateThread(function()
 
+    waitUntilInGame()
+
     while true do
 
         Wait(500)
+
+        -- Player page reloaded: resend inside / vehicle state
+        if nuiResync then
+            nuiResync = false
+            lastInsideState = nil
+            lastVehicleId = nil
+        end
 
         local vehicle =
             VehicleAudio:GetCurrentVehicle()
@@ -1541,6 +1645,8 @@ local doorNames = {
 }
 
 CreateThread(function()
+
+    waitUntilInGame()
 
     while true do
 
@@ -2083,6 +2189,8 @@ RegisterNUICallback(
 -- ==========================================
 
 CreateThread(function()
+
+    waitUntilInGame()
 
     local lastSent = nil
 

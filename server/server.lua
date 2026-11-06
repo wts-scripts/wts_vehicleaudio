@@ -38,9 +38,41 @@ local function loadVehicleStatesFile()
     return data
 end
 
+-- 1.1.2: the file was never cleaned and grew forever (one
+-- entry per plate ever used). Encoding a huge table every
+-- few seconds on the server thread causes hitches. Entries
+-- without a track or unused for VEHICLE_STATES_MAX_AGE are dropped.
+local VEHICLE_STATES_MAX_AGE = 14 * 24 * 3600 -- 14 days
+local persistedStamps = {} -- plate -> os.time() of the last update
+
 local function saveVehicleStatesFile(data)
 
-    local success, encoded = pcall(json.encode, data)
+    local now = os.time()
+    local output = {}
+
+    for plate, state in pairs(data) do
+
+        local stamp = persistedStamps[plate] or now
+
+        if type(state) == 'table'
+            and type(state.videoId) == 'string'
+            and state.videoId ~= ''
+            and now - stamp <= VEHICLE_STATES_MAX_AGE
+        then
+            local copy = {}
+            for key, value in pairs(state) do
+                copy[key] = value
+            end
+            copy.savedAt = stamp
+            output[plate] = copy
+        else
+            data[plate] = nil
+            persistedStamps[plate] = nil
+        end
+
+    end
+
+    local success, encoded = pcall(json.encode, output)
 
     if not success then
         print("^1[wts_vehicleaudio]^7 Failed to encode vehicle_states.json")
@@ -53,6 +85,33 @@ end
 
 -- In-memory cache + write debounce
 local persistedVehicleStates = loadVehicleStatesFile()
+
+do
+    local now = os.time()
+    local removed = 0
+
+    for plate, state in pairs(persistedVehicleStates) do
+
+        local stamp = type(state) == 'table' and tonumber(state.savedAt) or nil
+
+        if type(state) ~= 'table'
+            or type(state.videoId) ~= 'string'
+            or state.videoId == ''
+            or (stamp and now - stamp > VEHICLE_STATES_MAX_AGE)
+        then
+            persistedVehicleStates[plate] = nil
+            removed = removed + 1
+        else
+            state.savedAt = nil
+            persistedStamps[plate] = stamp or now
+        end
+
+    end
+
+    if removed > 0 then
+        print(('^3[wts_vehicleaudio]^7 vehicle_states.json: %s old entries removed'):format(removed))
+    end
+end
 local pendingVehicleStatesSave = false
 
 local function scheduleVehicleStatesSave()
@@ -717,6 +776,7 @@ RegisterNetEvent(
             vehiclePlateByNetId[vehicleId] = plate
 
             persistedVehicleStates[plate] = state
+            persistedStamps[plate] = os.time()
 
             scheduleVehicleStatesSave()
 
